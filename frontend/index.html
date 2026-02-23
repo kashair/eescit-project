@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EESCIT Project | Political Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>EESCIT Project</h1>
+            <p class="subtitle">Discover your political position across 6 dimensions</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Welcome Screen -->
+            <div id="welcome-screen" class="screen active">
+                <div class="welcome-content">
+                    <h2>What are your political views?</h2>
+                    <p>This quiz will help you understand your political position across 6 key dimensions:</p>
+                    <div class="axes-list">
+                        <div class="axis-item">
+                            <i class="fas fa-coins axis-icon"></i>
+                            <span class="axis-name">Economic</span>
+                        </div>
+                        <div class="axis-item">
+                            <i class="fas fa-leaf axis-icon"></i>
+                            <span class="axis-name">Environmental</span>
+                        </div>
+                        <div class="axis-item">
+                            <i class="fas fa-users axis-icon"></i>
+                            <span class="axis-name">Societal</span>
+                        </div>
+                        <div class="axis-item">
+                            <i class="fas fa-theater-masks axis-icon"></i>
+                            <span class="axis-name">Cultural</span>
+                        </div>
+                        <div class="axis-item">
+                            <i class="fas fa-industry axis-icon"></i>
+                            <span class="axis-name">Industrial</span>
+                        </div>
+                        <div class="axis-item">
+                            <i class="fas fa-microchip axis-icon"></i>
+                            <span class="axis-name">Technological</span>
+                        </div>
+                    </div>
+                    <p class="quiz-info">You'll answer 60 questions (10 per dimension). For each statement, choose your level of agreement.</p>
+                    <button id="start-quiz" class="btn btn-primary">
+                        <i class="fas fa-play btn-icon"></i>
+                        Start Quiz
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Screen -->
+            <div id="quiz-screen" class="screen">
+                <div class="quiz-header">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="quiz-info">
+                        <span id="question-counter">Question 1 of 60</span>
+                        <span id="current-axis">Economic</span>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-number" id="question-number">1</div>
+                    <h3 id="question-text" class="question-text">Loading question...</h3>
+                </div>
+
+                <div class="answers-container">
+                    <button class="answer-btn" data-value="2">
+                        <span class="answer-label">Strongly For</span>
+                        <span class="answer-indicator"></span>
+                    </button>
+                    <button class="answer-btn" data-value="1">
+                        <span class="answer-label">For</span>
+                        <span class="answer-indicator"></span>
+                    </button>
+                    <button class="answer-btn" data-value="0">
+                        <span class="answer-label">Neutral</span>
+                        <span class="answer-indicator"></span>
+                    </button>
+                    <button class="answer-btn" data-value="-1">
+                        <span class="answer-label">Against</span>
+                        <span class="answer-indicator"></span>
+                    </button>
+                    <button class="answer-btn" data-value="-2">
+                        <span class="answer-label">Strongly Against</span>
+                        <span class="answer-indicator"></span>
+                    </button>
+                </div>
+
+                <div class="quiz-controls">
+                    <button id="prev-question" class="btn btn-secondary" disabled>
+                        <i class="fas fa-chevron-left btn-icon"></i>
+                        Previous
+                    </button>
+                    <button id="next-question" class="btn btn-primary" disabled>
+                        Next
+                        <i class="fas fa-chevron-right btn-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="results-screen" class="screen">
+                <div class="results-content">
+                    <h2>Your Political Profile</h2>
+                    <div id="overall-title" class="overall-title">
+                        <h3 id="general-title">Calculating your overall political identity...</h3>
+                        <p id="general-description"></p>
+                    </div>
+                    <p class="results-subtitle">Your position across the 6 political dimensions</p>
+                    
+                    <div class="results-grid">
+                        <div class="axis-result">
+                            <div class="axis-header">
+                                <i class="fas fa-coins axis-icon"></i>
+                                <h3>Economic</h3>
+                            </div>
+                            <div class="axis-bar">
+                                <div class="axis-fill" id="economic-fill"></div>
+                                <div class="axis-label" id="economic-label">0</div>
+                            </div>
+                            <p class="axis-description" id="economic-desc"></p>
+                        </div>
+
+                        <div class="axis-result">
+                            <div class="axis-header">
+                                <i class="fas fa-leaf axis-icon"></i>
+                                <h3>Environmental</h3>
+                            </div>
+                            <div class="axis-bar">
+                                <div class="axis-fill" id="environmental-fill"></div>
+                                <div class="axis-label" id="environmental-label">0</div>
+                            </div>
+                            <p class="axis-description" id="environmental-desc"></p>
+                        </div>
+
+                        <div class="axis-result">
+                            <div class="axis-header">
+                                <i class="fas fa-users axis-icon"></i>
+                                <h3>Societal</h3>
+                            </div>
+                            <div class="axis-bar">
+                                <div class="axis-fill" id="societal-fill"></div>
+                                <div class="axis-label" id="societal-label">0</div>
+                            </div>
+                            <p class="axis-description" id="societal-desc"></p>
+                        </div>
+
+                        <div class="axis-result">
+                            <div class="axis-header">
+                                <i class="fas fa-theater-masks axis-icon"></i>
+                                <h3>Cultural</h3>
+                            </div>
+                            <div class="axis-bar">
+                                <div class="axis-fill" id="cultural-fill"></div>
+                                <div class="axis-label" id="cultural-label">0</div>
+                            </div>
+                            <p class="axis-description" id="cultural-desc"></p>
+                        </div>
+
+                        <div class="axis-result">
+                            <div class="axis-header">
+                                <i class="fas fa-industry axis-icon"></i>
+                                <h3>Industrial</h3>
+                            </div>
+                            <div class="axis-bar">
+                                <div class="axis-fill" id="industrial-fill"></div>
+                                <div class="axis-label" id="industrial-label">0</div>
+                            </div>
+                            <p class="axis-description" id="industrial-desc"></p>
+                        </div>
+
+                        <div class="axis-result">
+                            <div class="axis-header">
+                                <i class="fas fa-microchip axis-icon"></i>
+                                <h3>Technological</h3>
+                            </div>
+                            <div class="axis-bar">
+                                <div class="axis-fill" id="technological-fill"></div>
+                                <div class="axis-label" id="technological-label">0</div>
+                            </div>
+                            <p class="axis-description" id="technological-desc"></p>
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button id="restart-quiz" class="btn btn-primary">
+                            <i class="fas fa-redo btn-icon"></i>
+                            Take Quiz Again
+                        </button>
+                        <button id="share-results" class="btn btn-secondary">
+                            <i class="fas fa-share-alt btn-icon"></i>
+                            Share Results
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; 2026 Dean Fink. All Rights Reserved.</p>
+            <p class="version">Version 1.0.3 - "The EESCIT Project"</p>
+        </footer>
+    </div>
+
+    <script src="../backend/script.js"></script>
+</body>
+</html>
